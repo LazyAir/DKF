@@ -10,19 +10,19 @@ import matplotlib.pyplot
 
 class KalmanFilter(object):
 	def __init__(self, F, p_est_err, proc_sigma, meas_sigma):
-		self.F = F # process transfer matrix
+		self.F = F # state transition matrix
 		self.P_hat = np.diag(p_est_err**2, k = 0) #posteriori estimate error covariance matrix
 		self.Q = np.diag(proc_sigma**2, k = 0) #process noise matrix
 		self.R = np.diag(meas_sigma**2, k = 0) #measurement noise matrix
-		self.H = np.matrix(np.identity(F[0].size))	#gain matrix
+		self.H = np.matrix(np.identity(F[0].size))	#observation model
 
 
-	def setF(self, F): #update the process transfer matrix
+	def setF(self, F): #update the state transition matrix
 		self.F = F
 
 	#one iteration of kalman filter
 	def one_iteration_KF(self, X_h, Z):
-		#Time Updates Phase
+		#Predict Phase
 		X_ = self.F * X_h  #(1) Project the state ahead
 		X_hat =  X_h 
 		P_ = self.F * self.P_hat * self.F.getT() + self.Q #(2) Project the error convariance ahead
@@ -112,7 +112,7 @@ def simulation():
 	x_array_true_1, y_array_true_1, x_array_sensor_1, y_array_sensor_1 \
 		= generateSimulatedData(iter_n_1, X_true, X_sensor, theta, delta_t, meas_noise_sigma) 
 	
-	kf.setF(constructF(theta, delta_t)) #update the process transfer matrix F
+	kf.setF(constructF(theta, delta_t)) #update the state transition matrix F
 	x_array_predict_1, y_array_predict_1 \
 		= obtainFilteredData(kf, iter_n_1, X_hat, x_array_sensor_1, y_array_sensor_1, X_sensor[2])
 
