@@ -14,7 +14,7 @@ class KalmanFilter(object):
 		self.P_hat = np.diag(p_est_err**2, k = 0) #posteriori estimate error covariance matrix
 		self.Q = np.diag(proc_sigma**2, k = 0) #process noise matrix
 		self.R = np.diag(meas_sigma**2, k = 0) #measurement noise matrix
-		self.H = np.matrix(np.identity(F[0].size))	#observation model
+		self.H = np.matrix(np.identity(F[0].size)) #observation model, maps the true state space into the observed space
 
 
 	def setF(self, F): #update the state transition matrix
