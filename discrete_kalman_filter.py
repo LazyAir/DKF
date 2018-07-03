@@ -80,8 +80,8 @@ def constructF(theta, delta_t):
 	d_x = np.cos(theta) * delta_t
 	d_y = np.sin(theta) * delta_t
 	F = np.matrix([[1,0,d_x],
-				   [0,1,d_y],
-				   [0,0,1]])
+		       [0,1,d_y],
+		       [0,0,1]])
 	return F
 
 
@@ -100,8 +100,8 @@ def simulation():
 	#initial posintion, velocity and heading, the initial value given by the camera
 	X_true = np.array([0,0,0.1]) # State X: x, y, velocity
 	X_sensor = np.array( [np.random.normal(X_true[0], meas_noise_sigma[0],1),
-						  np.random.normal(X_true[1], meas_noise_sigma[1],1),
-						  X_true[2] ] )
+			      np.random.normal(X_true[1], meas_noise_sigma[1],1),
+			      X_true[2] ] )
 
 	theta = -np.pi/2 #initial angle against positive x-axis
 	delta_t = 0.2
@@ -139,7 +139,7 @@ def simulation():
 	X_sensor = np.array([x_array_predict_2[iter_n_2], y_array_predict_2[iter_n_2], X_sensor[2]])
 
 	theta = -np.pi/2 
-	L3 = 0.6
+	L3 = 0.3
 	iter_n_3 = int(math.ceil(L3/(X_true[2]*delta_t))) + 1
 	X_hat = np.matrix(X_sensor).getT()
 
