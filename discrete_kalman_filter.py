@@ -210,6 +210,5 @@ def simulation():
 	pylab.grid()
 	pylab.show()
 
-
 if __name__ == '__main__':
 	simulation()
