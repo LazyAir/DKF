@@ -37,5 +37,5 @@ Python
 
 run <code>python discrete_kalman_filter.py</code> to get the simulation results.
 
-## 2. License
+## 3. License
 MIT License
